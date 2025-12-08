@@ -36,6 +36,7 @@ def simulate(
   initial_mutant_location: int = None,
   loc_to_type_info: bool = False,
 ) -> SimulationResult:
+  assert r >= 0, "r must be non-negative."
   N = len(G)
   locs_to_types = []
   loc_to_type = {
@@ -63,7 +64,11 @@ def simulate(
       # dB step
       dier = random.choice(list(G.nodes()))
       dier_neighbors = list(G.neighbors(dier))
-      birther = random.choices(population=dier_neighbors, weights=[fitness(loc_to_type[node]) for node in dier_neighbors])[0]
+      dier_neighbor_weights = [fitness(loc_to_type[node]) for node in dier_neighbors]
+      # If all neighbors are mutants when r = 0, then pick uniformly at random.
+      if all(weight == 0 for weight in dier_neighbor_weights):
+        dier_neighbor_weights = [1]*len(dier_neighbor_weights)
+      birther = random.choices(population=dier_neighbors, weights=dier_neighbor_weights)[0]
 
 
     num_mutants += loc_to_type[birther].value - loc_to_type[dier].value

@@ -36,7 +36,7 @@ def main():
         (trial_number, G, r, 1-delta)
         for trial_number in range(TRIALS) 
         # for r in np.linspace(1, 1, 20+1)
-        for r in np.arange(0.1, 2.1, 0.01)
+        for r in np.arange(0.0, 2.0+0.01, 0.01)
         for delta in (0, .25, .5, .75, 1)
         # for r in (1, 1.1, 1.5)
         # for delta in np.linspace(0, 1, 20+1)
@@ -44,7 +44,7 @@ def main():
     )
 
   df = pd.DataFrame(results)
-  df.to_csv('./data/cycle-10-results-delta-examples.csv')
+  df.to_csv('./data/cycle-10-results-martin.csv')
   print(df)
 
 
