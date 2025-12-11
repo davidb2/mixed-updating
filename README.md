@@ -10,4 +10,4 @@ The code requires the following packages:
 * `seaborn`
 * `tqdm`
 
-To generate all graphs of a certain size, the [geng` program fom the [`nauty`](https://pallini.di.uniroma1.it/) suite was used.
+To generate all graphs of a certain size, the `geng` program fom the [`nauty`](https://pallini.di.uniroma1.it/) suite was used.
